@@ -12,7 +12,7 @@ def login(request):
 
 def home(request):
     context = {}
-    return render(request, 'wallet/main.html', context)
+    return render(request, 'wallet/home.html', context)
 
 def dashboard(request):
     context = {}
