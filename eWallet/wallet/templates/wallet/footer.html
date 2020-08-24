@@ -1,9 +1,6 @@
-
-
-
 <!-- Footer -->
-<footer class="page-footer font-small mdb-color pt-4" style="background-color: #A9A9A9">
-  <div class="container text-center text-md-left">
+<footer class="page-footer font-small pt-0 bg-dark text-white" >
+  <div class="container text-center text-md-center">
     <div class="row text-center text-md-left mt-3 pb-3">
       <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
         <h6 class="text-uppercase mb-6 font-weight-bold">Digital Wallet</h6>
@@ -13,6 +10,25 @@
           Digital wallet anywhere any time.
       </div>
 
+
+      <div class="col-md-2 mx-auto">
+
+        <!-- Links -->
+        <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Links</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="{% url 'home' %}">Home</a>
+          </li>
+          <li>
+            <a href="#">About us</a>
+          </li>
+          <li>
+            <a href="#">Contact us</a>
+          </li>
+        </ul>
+
+      </div>
 
       <hr class="w-100 clearfix d-md-none">
       <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
@@ -27,9 +43,17 @@
       </div>
     </div>
 
+
+    <div class="md-right text-break text-white">
+      <a href="#">legals</a>
+        <a href="#">Terms</a>
+        <a href="#">Privacy Policy</a>
+    </div>
+
     <div class="footer-copyright text-center py-3">© 2020 Copyright:
         <a href="{% url 'home' %}"> Digital Wallet UET ATD</a>
     </div>
+
   </div>
 </footer>
 <!-- Footer -->
