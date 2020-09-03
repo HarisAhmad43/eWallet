@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'wallet',
+    'wallet.apps.WalletConfig',
+    'portfolio.apps.PortfolioConfig'
 
     #'crispy_forms',
     #'django_filters',
