@@ -3,13 +3,26 @@
 
 {% block title %}
 <title>{{post.headline}}</title>
-{% endblock %}
+{% endblock title%}
 
 {% block content %}
-<img style="width: 25%; height: 25%;" src="{% static 'images/haris.JPG' %}" alt="profile_pic">
-<h1>{{post.headline}}</h1>
-<h4>{{post.sub_headline|linebreaks}}</h4>
+
+<style>
+    img{
+        width: 100%;
+        object-fit: cover;
+        height: 90vh;
+
+    }
+</style>
+
+<div class="main-container">
+    <img src="{{post.thumbnail.url}}" alt="thumbnail">
+    <h1>{{post.headline}}</h1>
+    <h4>{{post.sub_headline|linebreaks}}</h4>
+</div>
+
 
 <p>{{post.body}}</p>
 
-{% endblock %}
+{% endblock content %}

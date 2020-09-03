@@ -43,13 +43,14 @@ INSTALLED_APPS = [
     'portfolio.apps.PortfolioConfig'
 
     #'crispy_forms',
+
     #'django_filters',
     #'ckeditor',
     #'ckeditor_uploader',
     #'storages',
 ]
 
-#CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',

@@ -3,7 +3,7 @@
 
 {% block title %}
 <title>Portfolio</title>
-{% endblock %}
+{% endblock title%}
 
 {% block content %}
 
@@ -122,7 +122,7 @@
 			{% for post in posts %}
 			<div>
 				<div class="post">
-					<img class="thumbnail" src="{% static 'images/dash.jpg' %}" alt="dash">
+					<img class="thumbnail" src="{{post.thumbnail.url}}" alt="dash">
 					<div class="post-preview">
 						<h6 class="post-title">{{post.headline}}</h6>
 						<p class="post-intro">{{post.sub_headline}}</p>
@@ -168,4 +168,4 @@
 </script>
 
 <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
-{% endblock %}
+{% endblock content%}
