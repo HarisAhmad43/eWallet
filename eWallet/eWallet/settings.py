@@ -39,12 +39,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'crispy_forms',
+
     'wallet.apps.WalletConfig',
-    'portfolio.apps.PortfolioConfig'
+    'portfolio.apps.PortfolioConfig',
 
-    #'crispy_forms',
+    
 
-    #'django_filters',
+    'django_filters',
     #'ckeditor',
     #'ckeditor_uploader',
     #'storages',
