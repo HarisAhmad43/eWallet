@@ -4,6 +4,10 @@ from django.contrib.auth.decorators import login_required
 
 from . models import Post
 from .forms import PostForm
+
+from .filters import PostFilter
+from django.core.paginator import Paginator , EmptyPage, PageNotAnInteger
+
 # Create your views here.
 
 def user_home(request):
@@ -13,8 +17,19 @@ def user_home(request):
 
 def posts(request):
     posts = Post.objects.filter(active=True)
+    myFilter = PostFilter(request.GET, queryset=posts)
+    posts = myFilter.qs
 
-    context = {'posts':posts}
+    page = request.GET.get('page')
+    paginator = Paginator(posts , 3)
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+
+    context = {'posts':posts, 'myFilter':myFilter}
     return render(request, 'portfolio/posts.html', context)
 
 def post(request,pk):
