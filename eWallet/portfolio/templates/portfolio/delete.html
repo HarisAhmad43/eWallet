@@ -7,11 +7,19 @@
 
 {% block content %}
 
-<div class="main-container">
+<style type="text/css">
+    body{
+        background-color: #15202B;
+
+    }
+
+</style>
+
+<div >
     <form action="" method="POST">
         {% csrf_token %}
 
-        <p>Are you sure you want to delete {{item}}?</p>
+        <p style="color: #fff">Are you sure you want to delete {{item}}?</p>
         <input class="btn btn-outline-danger" type="submit" value="confirm">
     </form>
 </div>

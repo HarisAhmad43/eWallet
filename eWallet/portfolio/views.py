@@ -5,6 +5,10 @@ from django.contrib.auth.decorators import login_required
 from . models import Post
 from .forms import PostForm
 
+from django.core.mail import EmailMessage
+from django.conf import settings
+from django.template.loader import render_to_string
+
 from .filters import PostFilter
 from django.core.paginator import Paginator , EmptyPage, PageNotAnInteger
 
@@ -32,8 +36,8 @@ def posts(request):
     context = {'posts':posts, 'myFilter':myFilter}
     return render(request, 'portfolio/posts.html', context)
 
-def post(request,pk):
-    post = Post.objects.get(id=pk)
+def post(request,slug):
+    post = Post.objects.get(slug=slug)
 
     context = {'post': post}
     return render(request, 'portfolio/post.html', context)
@@ -58,8 +62,8 @@ def createPost(request):
     
 
 @login_required(login_url="user_home")
-def updatePost(request, pk):
-    post = Post.objects.get(id=pk)
+def updatePost(request, slug):
+    post = Post.objects.get(slug=slug)
     form = PostForm(instance=post)
 
     if request.method == "POST":
@@ -73,8 +77,8 @@ def updatePost(request, pk):
 
 
 @login_required(login_url="user_home")
-def deletePost(request, pk):
-    post = Post.objects.get(id=pk)
+def deletePost(request, slug):
+    post = Post.objects.get(slug=slug)
 
     if request.method == "POST":
         post.delete()
@@ -82,3 +86,31 @@ def deletePost(request, pk):
 
     context={'item':post}
     return render(request, "portfolio/delete.html", context)
+
+
+def sendEmail(request):
+
+    if request.method == 'POST':
+
+        template = render_to_string('portfolio/email_template.html', {
+            'name':request.POST['name'],
+            'email':request.POST['email'],
+            'message':request.POST['message'],
+            })
+
+        email = EmailMessage(
+            request.POST['subject'],
+            template,
+            settings.EMAIL_HOST_USER,
+            ['djngpython@gmail.com']
+            )
+
+        email.fail_silently=False
+        email.send()
+
+    return render(request, 'portfolio/email_sent.html')
+    #return HttpResponse('Email was Sent!')
+
+
+
+

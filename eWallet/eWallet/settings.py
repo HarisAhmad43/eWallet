@@ -47,8 +47,8 @@ INSTALLED_APPS = [
     
 
     'django_filters',
-    #'ckeditor',
-    #'ckeditor_uploader',
+    'ckeditor',
+    'ckeditor_uploader',
     #'storages',
 ]
 
@@ -146,23 +146,23 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 #smtp confugration --> for email reset
 
-#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-#EMAIL_HOST = 'smtp.gmail.com'
-#EMAIL_PORT = 587
-#EMAIL_USE_TLS = True
-#EMAIL_HOST_USER = "YOU_EMAIL"
-#EMAIL_HOST_PASSWORD = 'YOU_EMAIL_PASSWORD'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = "djngpython@gmail.com"
+EMAIL_HOST_PASSWORD = 'djngpython43@'
 
 
-#CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_UPLOAD_PATH = 'uploads/'
 
-#CKEDITOR_CONFIGS = {
-#    'default': {
-#        'toolbar': 'full',
-#        'height': 300,
-#        'width': '100%',
-#    },
-#}
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'height': 300,
+        'width': '100%',
+    },
+}
 
 #AWS_QUERYSTRING_AUTH = False
 

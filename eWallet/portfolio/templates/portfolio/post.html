@@ -14,15 +14,28 @@
         height: 90vh;
 
     }
+   body{
+        background-color: #15202B;
+
+    }
+
+    h1{
+        color: #4cb4c7;
+    }
+    .main-container{
+        color: #FFFFFF;
+    }
+
 </style>
 
 <div class="main-container">
     <img src="{{post.thumbnail.url}}" alt="thumbnail">
     <h1>{{post.headline}}</h1>
     <h4>{{post.sub_headline|linebreaks}}</h4>
+    <p >{{post.body|safe}}</p>
 </div>
 
 
-<p>{{post.body}}</p>
+
 
 {% endblock content %}
