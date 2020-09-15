@@ -13,12 +13,14 @@ from .filters import PostFilter
 from django.core.paginator import Paginator , EmptyPage, PageNotAnInteger
 
 # Create your views here.
-
+@login_required(login_url='home')
 def user_home(request):
     posts = Post.objects.filter(active=True, featured=True)[0:3]
     context = {'posts':posts}
     return render(request, 'portfolio/index.html', context)
 
+
+@login_required(login_url='home')
 def posts(request):
     posts = Post.objects.filter(active=True)
     myFilter = PostFilter(request.GET, queryset=posts)
@@ -36,18 +38,18 @@ def posts(request):
     context = {'posts':posts, 'myFilter':myFilter}
     return render(request, 'portfolio/posts.html', context)
 
+
+@login_required(login_url='home')
 def post(request,slug):
     post = Post.objects.get(slug=slug)
 
     context = {'post': post}
     return render(request, 'portfolio/post.html', context)
 
-def profile(request):
-    context = {}
-    return render(request, 'portfolio/profile.html', context)
+
 
 #CRUD views
-@login_required(login_url="user_home")
+@login_required(login_url="home")
 def createPost(request):
     form = PostForm()
 
@@ -61,7 +63,7 @@ def createPost(request):
     return render(request, 'portfolio/post_form.html', context)
     
 
-@login_required(login_url="user_home")
+@login_required(login_url="home")
 def updatePost(request, slug):
     post = Post.objects.get(slug=slug)
     form = PostForm(instance=post)
@@ -76,7 +78,7 @@ def updatePost(request, slug):
     return render(request, 'portfolio/post_form.html', context)
 
 
-@login_required(login_url="user_home")
+@login_required(login_url="home")
 def deletePost(request, slug):
     post = Post.objects.get(slug=slug)
 
@@ -88,6 +90,7 @@ def deletePost(request, slug):
     return render(request, "portfolio/delete.html", context)
 
 
+@login_required(login_url='home')
 def sendEmail(request):
 
     if request.method == 'POST':

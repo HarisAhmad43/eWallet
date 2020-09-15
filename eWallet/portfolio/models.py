@@ -3,6 +3,8 @@ from django.utils.text import slugify
 from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
 
+from wallet.models import *
+
 # Create your models here.
 class Tag(models.Model):
     name = models.CharField(max_length=200)
