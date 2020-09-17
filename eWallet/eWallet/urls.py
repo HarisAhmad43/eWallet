@@ -23,6 +23,7 @@ urlpatterns = [
     path('', include('wallet.urls')),
     path('', include('portfolio.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
+
 ]
 
 

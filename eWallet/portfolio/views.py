@@ -18,7 +18,7 @@ from wallet.models import *
 # Create your views here.
 
 @login_required(login_url="login")
-@allowed_users(allowed_roles=['customer'])
+@allowed_users(allowed_roles=['customer','admin'])
 def user_home(request):
 
     #posts = Post.objects.filter(active=True, featured=True)[0:3]
@@ -119,7 +119,6 @@ def sendEmail(request):
 
     return render(request, 'portfolio/email_sent.html')
     #return HttpResponse('Email was Sent!')
-
 
 
 
