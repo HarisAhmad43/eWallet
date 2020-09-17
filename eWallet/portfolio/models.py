@@ -3,7 +3,8 @@ from django.utils.text import slugify
 from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
 
-from wallet.models import *
+
+import wallet.models
 
 # Create your models here.
 class Tag(models.Model):
@@ -14,6 +15,7 @@ class Tag(models.Model):
 
 
 class Post(models.Model):
+    #customer = models.ForeignKey("wallet.Customer",null=True, on_delete=models.SET_NULL)
     headline = models.CharField(max_length=200)
     sub_headline = models.CharField(max_length=200, null=True, blank=True)
     thumbnail = models.ImageField(null=True, blank=True, upload_to='images', default='placeholder.png')

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 
-from . models import Post
+from .models import *
 from .forms import PostForm
 
 from django.core.mail import EmailMessage
@@ -12,15 +12,21 @@ from django.template.loader import render_to_string
 from .filters import PostFilter
 from django.core.paginator import Paginator , EmptyPage, PageNotAnInteger
 
+from wallet.decorators import unauthenticated_user, allowed_users, admin_only
+from wallet.models import *
+
 # Create your views here.
-@login_required(login_url='home')
+
+@login_required(login_url="login")
+@allowed_users(allowed_roles=['customer'])
 def user_home(request):
-    posts = Post.objects.filter(active=True, featured=True)[0:3]
+
+    #posts = Post.objects.filter(active=True, featured=True)[0:3]
     context = {'posts':posts}
     return render(request, 'portfolio/index.html', context)
 
 
-@login_required(login_url='home')
+@login_required(login_url='login')
 def posts(request):
     posts = Post.objects.filter(active=True)
     myFilter = PostFilter(request.GET, queryset=posts)
@@ -39,7 +45,7 @@ def posts(request):
     return render(request, 'portfolio/posts.html', context)
 
 
-@login_required(login_url='home')
+@login_required(login_url='login')
 def post(request,slug):
     post = Post.objects.get(slug=slug)
 
@@ -49,7 +55,7 @@ def post(request,slug):
 
 
 #CRUD views
-@login_required(login_url="home")
+@login_required(login_url="login")
 def createPost(request):
     form = PostForm()
 
@@ -63,7 +69,7 @@ def createPost(request):
     return render(request, 'portfolio/post_form.html', context)
     
 
-@login_required(login_url="home")
+@login_required(login_url="login")
 def updatePost(request, slug):
     post = Post.objects.get(slug=slug)
     form = PostForm(instance=post)
@@ -78,7 +84,7 @@ def updatePost(request, slug):
     return render(request, 'portfolio/post_form.html', context)
 
 
-@login_required(login_url="home")
+@login_required(login_url="login")
 def deletePost(request, slug):
     post = Post.objects.get(slug=slug)
 
@@ -90,7 +96,7 @@ def deletePost(request, slug):
     return render(request, "portfolio/delete.html", context)
 
 
-@login_required(login_url='home')
+@login_required(login_url='login')
 def sendEmail(request):
 
     if request.method == 'POST':
