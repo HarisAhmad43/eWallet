@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from portfolio.views import *
 from django.contrib.auth.forms import UserCreationForm
-from .forms import CreateUserForm
+from .forms import CreateUserForm, CustomerForm
 from .models import *
 
 from django.contrib.auth import authenticate, login, logout
@@ -70,4 +70,5 @@ def home(request):
 def dashboard(request):
     context = {}
     return render(request, 'wallet/dashboard.html', context)
+
 

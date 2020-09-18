@@ -1,6 +1,6 @@
 {% extends 'wallet/main.html' %}
 {% load static %}
-
+{% load crispy_forms_tags %}
 
 {% block title %}
 <title>Portfolio</title>
@@ -19,6 +19,13 @@
 	gtag('config', 'UA-47692315-56');
 </script>
 
+<style type="text/css">
+	#profile_pic,#box{
+		margin-top: 25px;
+	}
+
+</style>
+
 <link id="theme-style" rel="stylesheet" type="text/css" href="">
 
 <section class="s1">
@@ -26,28 +33,33 @@
 		<div class="greeting-wrapper">
 			<h1>Hi, I'm Haris Ahmad Khan</h1>
 		</div>
-
+		<div class="col-md">
+			<h5 style="text-align: center;line-height: 0;">Personalize Theme</h5>
+			<div id="theme-options-wrapper">
+				<div data-mode="light" id="light-mode" class="theme-dot"></div>
+				<div data-mode="blue" id="blue-mode" class="theme-dot"></div>
+				<div data-mode="green" id="green-mode" class="theme-dot"></div>
+				<div data-mode="purple" id="purple-mode" class="theme-dot"></div>
+			</div>
+			<p id="settings-note">*Theme settings will be saved for<br>your next vist</p>
+		</div>
 
 		<div class="intro-wrapper">
 			{% include 'portfolio/navbar_portfolio.html' %}
+		</div>
 
-			<div class="left-column">
-				<img id="profile_pic" src="{% static 'images/haris.JPG' %}" alt="profile_pic">
-				<br>
-				<h5 style="text-align: center;line-height: 0;">Personalize Theme</h5>
-
-				<div id="theme-options-wrapper">
-					<div data-mode="light" id="light-mode" class="theme-dot"></div>
-					<div data-mode="blue" id="blue-mode" class="theme-dot"></div>
-					<div data-mode="green" id="green-mode" class="theme-dot"></div>
-					<div data-mode="purple" id="purple-mode" class="theme-dot"></div>
-				</div>
-
-				<p id="settings-note">*Theme settings will be saved for<br>your next vist</p>
+		<div class="row">
+			<div class="col-md-4">
+				<img id="profile_pic" src="{{request.user.customer.profile_pic.url}}" alt="profile_pic">
 			</div>
-
-			<div class="right-column">
-
+			<div class="col-md-4">
+				<form action="" method="POST" enctype="multipart/form-data">
+					{% csrf_token %}
+					{{form|crispy}}
+					<input class="btn btn-outline-info" type="submit" name="Update Information">
+				</form>
+			</div>
+			<div class="col-md-4" id="box">
 				<div id="preview-shadow">
 					<div id="preview">
 						<div id="corner-tl" class="corner"></div>
@@ -65,20 +77,13 @@
 
 <section class="s2">
 	<div class="main-container">
-
 		<div class="about-wrapper">
 			<div class="about-me">
 				<h4>More about me</h4>
-
 				<p>I love to make new things and develop our beloved country.</p>
-
 				<p>While I'm busy doing a full time job still love to make new Websites.</p>
-
-
 				<hr>
-
 				<h4>TOP EXPERTISE</h4>
-
 				<p>web developer with primary focus on Django: <a target="_blank" href="{% static 'resume.pdf' %}">Download Resume</a></p>
 
 				<div id="skills">

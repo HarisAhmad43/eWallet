@@ -53,6 +53,7 @@ INSTALLED_APPS = [
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+#AUTH_USER_MODEL = 'wallet.Customer'
 
 MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',

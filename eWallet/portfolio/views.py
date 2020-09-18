@@ -13,16 +13,24 @@ from .filters import PostFilter
 from django.core.paginator import Paginator , EmptyPage, PageNotAnInteger
 
 from wallet.decorators import unauthenticated_user, allowed_users, admin_only
-from wallet.models import *
+import  wallet.models
+from wallet.forms import CustomerForm as CF
 
 # Create your views here.
 
 @login_required(login_url="login")
 @allowed_users(allowed_roles=['customer','admin'])
 def user_home(request):
+    customer = request.user.customer
+    form = CF(instance=customer)
+
+    if request.method == 'POST':
+        form = CF(request.POST, request.FILES, instance=customer)
+        if form.is_valid():
+            form.save()
 
     #posts = Post.objects.filter(active=True, featured=True)[0:3]
-    context = {'posts':posts}
+    context = {'posts':posts, 'form': form}
     return render(request, 'portfolio/index.html', context)
 
 
