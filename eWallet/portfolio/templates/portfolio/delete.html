@@ -1,0 +1,27 @@
+{% extends 'wallet/main.html' %}
+{% load static %}
+
+{% block title %}
+<title>Delete post</title>
+{% endblock title %}
+
+{% block content %}
+
+<style type="text/css">
+    body{
+        background-color: #15202B;
+
+    }
+
+</style>
+
+<div >
+    <form action="" method="POST">
+        {% csrf_token %}
+
+        <p style="color: #fff">Are you sure you want to delete {{item}}?</p>
+        <input class="btn btn-outline-danger" type="submit" value="confirm">
+    </form>
+</div>
+
+{% endblock content%}

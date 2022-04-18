@@ -1,0 +1,42 @@
+{% extends 'wallet/main.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+<title>Post Form</title>
+{% endblock title%}
+
+{% block content %}
+<style type="text/css">
+    body{
+        color: #fff;
+        background-color: #15202B;
+    }
+    #div_id_tags > div{
+        max-height: 100px;
+        overflow-y: scroll;
+        border: 1px solid #888;
+        padding: 5px;
+        border-radius: 5px;
+    }
+    h3{
+        color: #4cb4c7;
+    }
+    .main-container{
+        color: #FFFFFF;
+    }
+</style>
+
+<div class="main-container">
+    <h3>Post Form</h3>
+
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.media}}
+        {{form|crispy}}
+        <input class="btn btn-outline-primary" type="submit" value="submit Post">
+
+    </form>
+</div>
+
+{% endblock content%}
